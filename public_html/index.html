@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roman Countdown</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #countdown-container {
+        background-image: url("bg.png");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #logo-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: black;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      #logo {
+        width: 100px; /* Adjust logo size as needed */
+        height: auto;
+      }
+
+      #countdown {
+        color: white;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 3em;
+        position: absolute;
+        left: 51%;
+        top: 52%;
+        transform: translate(-50%, -50%);
+        line-height: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      #link {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        margin-top: 5px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="countdown-container">
+      <div id="logo-container">
+        <a id="link" href="https://q.group">
+          <img id="logo" src="q.jpeg" alt="Logo" />
+        </a>
+      </div>
+      <div id="countdown"></div>
+    </div>
+    <script>
+      function toRoman(num) {
+        const romanMap = [
+          { value: 1000, symbol: "M" },
+          { value: 900, symbol: "CM" },
+          { value: 500, symbol: "D" },
+          { value: 400, symbol: "CD" },
+          { value: 100, symbol: "C" },
+          { value: 90, symbol: "XC" },
+          { value: 50, symbol: "L" },
+          { value: 40, symbol: "XL" },
+          { value: 10, symbol: "X" },
+          { value: 9, symbol: "IX" },
+          { value: 5, symbol: "V" },
+          { value: 4, symbol: "IV" },
+          { value: 1, symbol: "I" },
+        ];
+        let result = "";
+        for (const { value, symbol } of romanMap) {
+          while (num >= value) {
+            result += symbol;
+            num -= value;
+          }
+        }
+        return result;
+      }
+
+      function updateCountdown() {
+        const currentDate = new Date();
+        const targetDate = new Date("2024-12-06");
+        const timeDiff = targetDate.getTime() - currentDate.getTime();
+        const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        document.getElementById("countdown").textContent = toRoman(daysLeft);
+      }
+
+      updateCountdown();
+    </script>
+  </body>
+</html>
