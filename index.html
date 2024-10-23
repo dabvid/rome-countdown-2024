@@ -42,7 +42,7 @@
       #countdown {
         color: white;
         font-family: "Times New Roman", Times, serif;
-        font-size: 3em;
+        font-size: 3em; /* Default font size */
         position: absolute;
         left: 51%;
         top: 52%;
@@ -58,6 +58,12 @@
         font-size: 16px;
         margin-top: 5px;
         display: block;
+      }
+
+      @media (max-width: 600px) {
+        #countdown {
+          font-size: 2em;
+        }
       }
     </style>
   </head>
